@@ -11,7 +11,6 @@ export const MainPage = (props) => {
       const onGetUsers = async () => {
         setLoading(true);
         let allUsers = await get10Users();
-        console.log("all users", allUsers);
        }
   
        const onGetPosts = () => {
@@ -50,9 +49,5 @@ export const MainPage = (props) => {
     
 }
 
-const mapStateToProps = (state) => ({
-    users: state.users,
-    posts: state.posts,
-    photos: state.photos,
-  });
-export default connect(mapStateToProps,{get10Users,get10Posts,get10Photos})(MainPage);
+
+export default connect(null,{get10Users,get10Posts,get10Photos})(MainPage);
