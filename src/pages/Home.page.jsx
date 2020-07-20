@@ -3,20 +3,45 @@ import { connect } from "react-redux";
 import { getUsers } from "../redux/actions/users.actions";
 
 const HomePage = (props) => {
-	const { getUsers } = props;
+	const { getUsers, users } = props;
 	const [loading, setLoading] = useState(false);
 
 	const onGetUserData = async () => {
+		setLoading(true);
 		let userData = await getUsers();
+		if (userData.status === 200) {
+			setLoading(false);
+		} else {
+			setLoading(false);
+		}
 	};
 
-	return (
-		<div>
-			<button onClick={() => getUsers()} type="button">
-				click
-			</button>
-		</div>
-	);
+	useEffect(() => {
+		onGetUserData();
+	}, []);
+
+	if (loading) {
+		return <span>Loading...</span>;
+	} else {
+		return (
+			<div>
+				{users && users.length > 0
+					? users.map((user, i) => {
+							return (
+								<div key={i} style={{ borderBottom: "1px solid #ccc" }}>
+									<h3>{user.name}</h3>
+									<p>{user.email}</p>
+								</div>
+							);
+					  })
+					: "No user found"}
+			</div>
+		);
+	}
 };
 
-export default connect(null, { getUsers })(HomePage);
+const mapStateToProps = (state) => ({
+	users: state.main.users,
+});
+
+export default connect(mapStateToProps, { getUsers })(HomePage);
