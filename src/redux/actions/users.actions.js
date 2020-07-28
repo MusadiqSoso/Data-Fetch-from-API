@@ -1,5 +1,5 @@
 import axios from "axios";
-const { mainActionTypes } = require("../action-types/users-actions.types");
+const { usersActionTypes } = require("../action-types/users-actions.types");
 
 /**
  * This function fetches user data
@@ -11,7 +11,7 @@ export const getUsers = () => async (dispatch) => {
 		const { status, data } = users;
 		if (status === 200) {
 			dispatch({
-				type: mainActionTypes.GET_USERS,
+				type: usersActionTypes.GET_USERS,
 				payload: data,
 			});
 			return users;

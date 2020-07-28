@@ -1,17 +1,15 @@
-import { mainActionTypes } from "../../action-types/users-actions.types";
+import { photosActionTypes } from "../../action-types/photos-action.type";
 
 const INITIAL_STATE = {
-	users: {},
-	posts: {},
-	photos: {},
+	photos: {}
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
-		case mainActionTypes.GET_USERS:
+		case photosActionTypes.GET_PHOTOS:
 			return {
 				...state,
-				users: action.payload,
+				photos: action.payload,
 			};
 		default:
 			return state;

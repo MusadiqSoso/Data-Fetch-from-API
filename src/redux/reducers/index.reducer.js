@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
-import main from  "./main/main.reducer";
+import users from  "./users/users.reducer";
+import posts from "./posts/posts.reducer";
+import photos from "./photos/photos.reducer"
 
 
 
 export default combineReducers({
-    main
+    users,
+    posts,
+    photos
+
 });
